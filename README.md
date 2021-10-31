@@ -7,6 +7,7 @@ The code of the algorithm is in the main package (com.music), the rest of the pa
 
 In order to run the algorithm simply run the main method of the Generator class. For example:
 ```
+mkdir out
 mvn compile exec:java -Dexec.mainClass="com.music.Generator" -Dexec.args="-config ./analysis/midi/jarre -measures 20 -out ./out -scale MAJOR -tempo VERY_FAST"
 ```
 
