@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +36,8 @@ import com.music.model.SpecialNoteType;
 import com.music.model.ToneGroups;
 import com.music.model.ToneType;
 import com.music.model.prefs.UserPreferences;
+import java.util.Random;
+import com.music.tools.RandomFactory;
 import com.music.util.music.Chance;
 import com.music.util.music.ChordUtils;
 import com.music.util.music.NoteFactory;
@@ -52,7 +54,7 @@ import jm.music.tools.Mod;
 public class AccompanimentPartGenerator implements ScoreManipulator {
     private static final Logger logger = LoggerFactory.getLogger(AccompanimentPartGenerator.class);
 
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(AccompanimentPartGenerator.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -46,7 +47,7 @@ import jm.music.data.Rest;
 import jm.music.data.Score;
 
 public class Arpeggiator implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(Arpeggiator.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

@@ -21,6 +21,7 @@ package com.music;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.Vector;
 
 import com.music.model.ExtendedPhrase;
@@ -37,7 +38,7 @@ import jm.music.data.Rest;
 import jm.music.data.Score;
 
 public class PercussionGenerator implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(PercussionGenerator.class);
 
     private int[] PRIMARY_DRUM_PERCENTAGES = { 90, 10, 25, 50, 80, 10, 25, 50 };
     private int[] SECONDARY_DRUM_PERCENTAGES = { 15, 5, 80, 5, 20, 15, 80, 15 };

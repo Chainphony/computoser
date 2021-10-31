@@ -19,6 +19,7 @@
 package com.music;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.PartType;
 import com.music.model.prefs.UserPreferences;
@@ -32,7 +33,7 @@ import jm.music.data.Rest;
 import jm.music.data.Score;
 
 public class SimpleBeatGenerator implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(SimpleBeatGenerator.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

@@ -26,6 +26,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -60,7 +61,7 @@ import jm.music.tools.Mod;
 public class MainPartGenerator implements ScoreManipulator {
     private static final Logger logger = LoggerFactory.getLogger(MainPartGenerator.class);
 
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(MainPartGenerator.class);
     private static final int[] PROGRESS_TYPE_PERCENTAGES = new int[] {25, 48, 25, 2};
     private static final int[] INTERVAL_SPEC_PERCENTAGES = new int[] {20, 20, 35, 10, 15};
     private static final int[] NOTE_LENGTH_PERCENTAGES = new int[] {10, 31, 40, 7, 9, 3};

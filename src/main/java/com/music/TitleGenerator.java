@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
@@ -40,7 +41,7 @@ public class TitleGenerator implements ScoreManipulator {
 
     private static final Logger logger = LoggerFactory.getLogger(TitleGenerator.class);
 
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(TitleGenerator.class);
 
     private List<String> nouns;
     private List<String> abstractNouns;

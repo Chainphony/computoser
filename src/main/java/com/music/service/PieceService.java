@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.concurrent.Callable;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -75,7 +76,7 @@ public class PieceService {
 
     private static final Logger logger = LoggerFactory.getLogger(PieceService.class);
 
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(PieceService.class);
 
     @Inject
     private Generator generator;

@@ -19,6 +19,7 @@
 package com.music;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.ExtendedPhrase;
 import com.music.model.InstrumentGroups;
@@ -38,7 +39,7 @@ import jm.music.data.Score;
 
 public class BassPartGenerator implements ScoreManipulator {
 
-    private static Random random = new Random();
+    private static Random random = RandomFactory.createFor(BassPartGenerator.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

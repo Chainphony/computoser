@@ -29,6 +29,7 @@ import static com.music.model.InstrumentGroups.SIMPLE_BEAT_INSTRUMENTS;
 import static com.music.model.InstrumentGroups.SPORADIC_EFFECTS_INSTRUMENTS;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.InstrumentGroups;
 import com.music.model.PartType;
@@ -41,7 +42,7 @@ import jm.music.data.Part;
 import jm.music.data.Score;
 
 public class PartConfigurer implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(PartConfigurer.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

@@ -19,6 +19,7 @@
 package com.music;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.Scale;
 import com.music.model.prefs.UserPreferences;
@@ -27,7 +28,7 @@ import com.music.util.music.Chance;
 import jm.music.data.Score;
 
 public class ScaleConfigurer implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(ScaleConfigurer.class);
 
     private int[] SCALE_PERCENTAGES = new int[] {25,23,9,3,4,4,4,4,3,3,3,7,8};
     //private int[] MINOR_SCALE_PERCENTAGES = new int[] {0,45,24,7,14,0,0,0,0,0,0,0,10};

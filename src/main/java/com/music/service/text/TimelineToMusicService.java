@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -99,7 +100,7 @@ public class TimelineToMusicService {
 
     private Set<String> stopwords;
 
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(TimelineToMusicService.class);
 
     @PostConstruct
     public void init() throws IOException {

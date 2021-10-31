@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import jm.constants.Chords;
 
@@ -46,7 +47,7 @@ public class ChordUtils {
     public static final Map<Scale, List<Chord>> seventhChords = new HashMap<Scale, List<Chord>>();
     public static final Map<Scale, List<Chord>> otherChords = new HashMap<Scale, List<Chord>>();
 
-    public static final Random random = new Random();
+    public static final Random random = RandomFactory.createFor(ChordUtils.class);
 
     static {
         initializeChords();

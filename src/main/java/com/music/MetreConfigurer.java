@@ -19,6 +19,7 @@
 package com.music;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.prefs.Tempo;
 import com.music.model.prefs.UserPreferences;
@@ -28,7 +29,7 @@ import jm.JMC;
 import jm.music.data.Score;
 
 public class MetreConfigurer implements ScoreManipulator {
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(MetreConfigurer.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

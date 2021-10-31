@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.Set;
 
 import javax.sound.sampled.AudioFormat;
@@ -49,7 +50,7 @@ public class ScaleTester {
     private static final double FUNDAMENTAL_FREQUENCY = 262.626;
     // chromatic-to-scale ratio: (12/7) 1,7142857142857142857142857142857
 
-    private static Random random = new Random();
+    private static Random random = RandomFactory.createFor(ScaleTester.class);
     private static int sampleRate = 8000;
     private static Map<Double, long[]> fractionCache = new HashMap<>();
     private static double fundamentalFreq = 0;

@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Long;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ import com.music.model.prefs.Tempo;
 import com.music.model.prefs.UserPreferences;
 import com.music.tools.SongChart.GraphicsPanel;
 import com.music.util.MutingPrintStream;
+import com.music.tools.RandomFactory;
 import com.music.util.music.SMFTools;
 import com.music.util.music.ToneResolver;
 import com.music.web.util.StartupListener;
@@ -303,14 +305,15 @@ public class Generator {
         Option opt = new Option("out", true, "Path for output");
         opt.setRequired(true);
         options.addOption(opt);
-        
-        options.addOption("config", "Path for directory that contains a /soundbank/ dir");
+    
+        options.addOption("config", true, "Path for directory that contains a /soundbank/ dir");
         options.addOption("visualize", "Whether to visualize");
         options.addOption("play", "Whether play the generated piece");
         options.addOption("printstats", "Whether to print stats");
         options.addOption("measures", true, "Number of measures in the piece");
         options.addOption("scale", true, "The musical scale, one of: " + Arrays.toString(Scale.values()));
         options.addOption("tempo", true, "The tempo, one of: " + Arrays.toString(Tempo.values()));
+        options.addOption("seed", true, "Seed for the random number generators");
         
         CommandLineParser parser = new DefaultParser();
         CommandLine cl = null;
@@ -321,6 +324,10 @@ public class Generator {
             System.err.println("Error: " + ex.getMessage());
             formatter.printHelp( "java -jar computoser.jar", options);
             System.exit(0);
+        }
+
+        if (cl.hasOption("seed")) {
+            RandomFactory.setSeed(Long.parseLong(cl.getOptionValue("seed")));
         }
         
         String output = cl.getOptionValue("out");
@@ -350,11 +357,12 @@ public class Generator {
         }
         
         System.setOut(new MutingPrintStream(new ByteArrayOutputStream(), System.out));
-        
+
         Generator generator = new Generator();
         if (cl.hasOption("config")) {
             generator.configLocation = cl.getOptionValue("config");
         }
+
         generator.maxConcurrentGenerations = 5;
         generator.init();
 

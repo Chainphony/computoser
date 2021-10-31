@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -144,7 +145,7 @@ public class GameHandler extends AbstractWebSocketHandler {
             return;
         }
         List<Game> games = new ArrayList<>(this.pendingGames.values());
-        Random random = new Random();
+        Random random = RandomFactory.createFor(GameHandler.class);
 
         Game game = pendingGames.get(random.nextInt(games.size()));
         join(game.getId(), playerName, session);

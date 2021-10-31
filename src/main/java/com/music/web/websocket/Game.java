@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -48,7 +49,7 @@ public class Game {
     private static final int SECONDS = 60;
     public static final int PIECES_PER_GAME = 3;
     private static final int ANSWERS_PER_QUESTION = 4;
-    private Random random = new Random();
+    private Random random = RandomFactory.createFor(Game.class);
 
     private static final UserPreferences prefs = new UserPreferences();
 

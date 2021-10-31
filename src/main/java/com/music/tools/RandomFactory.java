@@ -1,6 +1,7 @@
 /*
  * Computoser is a music-composition algorithm and a website to present the results
- * Copyright (C) 2012-2014  Bozhidar Bozhanov
+ * Copyright (C) 2012-2014 Bozhidar Bozhanov
+ * Copyright (C) 2021 Dart Dart
  *
  * Computoser is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -16,29 +17,24 @@
  * along with Computoser.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.music.util.music;
+package com.music.tools;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import com.music.tools.RandomFactory;
+import java.lang.Class;
+import java.lang.Long;
+import java.util.Optional;
 
-public class Cadences {
-    private static final List<int[]> cadences = new ArrayList<>();
-    private static final Random random = RandomFactory.createFor(Cadences.class);
-
-    static {
-        cadences.add(new int[] {1, 4, 0});
-        cadences.add(new int[] {3, 4, 0});
-        cadences.add(new int[] {0, 4});
-        cadences.add(new int[] {1, 4});
-        cadences.add(new int[] {3, 4});
-        cadences.add(new int[] {4, 0});
-        cadences.add(new int[] {4, 1});
-        cadences.add(new int[] {4, 5});
+public class RandomFactory {
+    public static void setSeed(long s) {
+        seed = Optional.of(new Long(s));
     }
 
-    public static int[] getRandomCadence() {
-        return cadences.get(random.nextInt(cadences.size()));
+    public static Random createFor(Class c) {
+        if (seed.isPresent()) {
+            return new Random(c.getName().hashCode() + seed.get().longValue());
+        }
+        return new Random();
     }
+
+    private static Optional<Long> seed = Optional.empty();
 }

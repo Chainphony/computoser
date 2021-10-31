@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 import com.music.model.ExtendedPhrase;
 import com.music.model.InstrumentGroups;
@@ -38,7 +39,7 @@ import jm.music.data.Phrase;
 import jm.music.data.Score;
 
 public class DroneGenerator implements ScoreManipulator {
-    private final Random random = new Random();
+    private final Random random = RandomFactory.createFor(DroneGenerator.class);
 
     @Override
     public void handleScore(Score score, ScoreContext ctx, UserPreferences prefs) {

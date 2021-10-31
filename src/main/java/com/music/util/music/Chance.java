@@ -19,9 +19,10 @@
 package com.music.util.music;
 
 import java.util.Random;
+import com.music.tools.RandomFactory;
 
 public class Chance {
-    private static final Random random = new Random();
+    private static final Random random = RandomFactory.createFor(Chance.class);
 
     public static boolean test(int percentage) {
         if (percentage >= random.nextInt(100) + 1) {
