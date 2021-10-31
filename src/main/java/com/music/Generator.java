@@ -123,15 +123,17 @@ public class Generator {
         manipulators.add(new TimpaniPartGenerator());
         manipulators.add(new TitleGenerator());
 
-        try {
-            Collection<File> files = FileUtils.listFiles(new File(configLocation + "/soundbanks/"), new String[] {"sf2"}, false);
-            for (File file : files) {
-                InputStream is = new BufferedInputStream(new FileInputStream(file));
-                soundbanks.add(MidiSystem.getSoundbank(is));
+        if (configLocation != null) {
+            try {
+                Collection<File> files = FileUtils.listFiles(new File(configLocation + "/soundbanks/"), new String[] {"sf2"}, false);
+                for (File file : files) {
+                    InputStream is = new BufferedInputStream(new FileInputStream(file));
+                    soundbanks.add(MidiSystem.getSoundbank(is));
+                }
+            } catch (IOException | IllegalArgumentException ex) {
+                logger.warn("Problem loading soundbank: " + ex.getMessage());
+                // ignore
             }
-        } catch (IOException | IllegalArgumentException ex) {
-            logger.warn("Problem loading soundbank: " + ex.getMessage());
-            // ignore
         }
 
         //initJMusicSynthesizer();
@@ -302,7 +304,7 @@ public class Generator {
         opt.setRequired(true);
         options.addOption(opt);
         
-        options.addOption("config", true, "Path for directory that contains a /soundbank/ dir");
+        options.addOption("config", "Path for directory that contains a /soundbank/ dir");
         options.addOption("visualize", "Whether to visualize");
         options.addOption("play", "Whether play the generated piece");
         options.addOption("printstats", "Whether to print stats");
@@ -350,7 +352,9 @@ public class Generator {
         System.setOut(new MutingPrintStream(new ByteArrayOutputStream(), System.out));
         
         Generator generator = new Generator();
-        generator.configLocation = cl.getOptionValue("config");
+        if (cl.hasOption("config")) {
+            generator.configLocation = cl.getOptionValue("config");
+        }
         generator.maxConcurrentGenerations = 5;
         generator.init();
 
