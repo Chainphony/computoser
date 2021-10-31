@@ -316,6 +316,7 @@ public class Generator {
             cl = parser.parse(options, args);
         } catch (ParseException ex) {
             HelpFormatter formatter = new HelpFormatter();
+            System.err.println("Error: " + ex.getMessage());
             formatter.printHelp( "java -jar computoser.jar", options);
             System.exit(0);
         }
@@ -443,9 +444,9 @@ public class Generator {
             Play.midi(score);
         }
 
-        byte[] mp3 = generator.toMp3(FileUtils.readFileToByteArray(new File(output + "/gen.midi")), output);
+        // byte[] mp3 = generator.toMp3(FileUtils.readFileToByteArray(new File(output + "/gen.midi")), output);
         
-        FileUtils.writeByteArrayToFile(new File(output + "/gen.mp3"), mp3);
+        // FileUtils.writeByteArrayToFile(new File(output + "/gen.mp3"), mp3);
     }
 
     @SuppressWarnings({ "unchecked", "unused" })

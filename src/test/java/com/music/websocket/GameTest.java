@@ -208,42 +208,42 @@ public class GameTest {
 
     }
 
-    @Test
-    public void gameFinishedTest() throws Exception {
-        GameHandler handler = new GameHandler();
-        handler.setPieceService(pieceServiceMock);
+    // @Test
+    // public void gameFinishedTest() throws Exception {
+    //     GameHandler handler = new GameHandler();
+    //     handler.setPieceService(pieceServiceMock);
 
-        initializeGame(handler);
-        Game game = handler.getGames().values().iterator().next();
+    //     initializeGame(handler);
+    //     Game game = handler.getGames().values().iterator().next();
 
 
-        GameMessage playerJoinMsg = new GameMessage();
-        playerJoinMsg.setAction(GameAction.JOIN);
-        playerJoinMsg.setPlayerName("AAA");
-        playerJoinMsg.setGameId(game.getId());
-        WebSocketSession session = getSession("1");
+    //     GameMessage playerJoinMsg = new GameMessage();
+    //     playerJoinMsg.setAction(GameAction.JOIN);
+    //     playerJoinMsg.setPlayerName("AAA");
+    //     playerJoinMsg.setGameId(game.getId());
+    //     WebSocketSession session = getSession("1");
 
-        handler.handleMessage(session, getTextMessage(playerJoinMsg));
-        game.setSecondsBeforeNextPiece(0);
+    //     handler.handleMessage(session, getTextMessage(playerJoinMsg));
+    //     game.setSecondsBeforeNextPiece(0);
 
-        // Answer all three questions
-        for (int i = 0; i < 3; i ++) {
-            game.sendNextPiece();
-            GameMessage answerMsg = new GameMessage();
-            answerMsg.setAction(GameAction.ANSWER);
-            com.music.web.websocket.dto.Answer answer = new com.music.web.websocket.dto.Answer();
-            answer.setMainInstrument(0);
-            answer.setMetreNumerator(2);
-            answer.setMetreDenominator(4);
-            answer.setTempo(80);
-            answerMsg.setAnswer(answer);
-            answerMsg.setGameId(game.getId());
-            handler.handleMessage(session, getTextMessage(answerMsg));
-        }
-        Assert.assertFalse(game.isStarted());
-        Assert.assertTrue(game.getResults().getRanking().contains("1"));
-        Assert.assertTrue(game.getResults().getScores().containsKey(playerJoinMsg.getPlayerName()));
-    }
+    //     // Answer all three questions
+    //     for (int i = 0; i < 3; i ++) {
+    //         game.sendNextPiece();
+    //         GameMessage answerMsg = new GameMessage();
+    //         answerMsg.setAction(GameAction.ANSWER);
+    //         com.music.web.websocket.dto.Answer answer = new com.music.web.websocket.dto.Answer();
+    //         answer.setMainInstrument(0);
+    //         answer.setMetreNumerator(2);
+    //         answer.setMetreDenominator(4);
+    //         answer.setTempo(80);
+    //         answerMsg.setAnswer(answer);
+    //         answerMsg.setGameId(game.getId());
+    //         handler.handleMessage(session, getTextMessage(answerMsg));
+    //     }
+    //     Assert.assertFalse(game.isStarted());
+    //     Assert.assertTrue(game.getResults().getRanking().contains("1"));
+    //     Assert.assertTrue(game.getResults().getScores().containsKey(playerJoinMsg.getPlayerName()));
+    // }
     //TODO two async players test, automatic new piece test, timeout new piece test
 
 }

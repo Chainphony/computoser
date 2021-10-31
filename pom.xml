@@ -19,8 +19,12 @@
 
 	<repositories>
 		<repository>
+        	<id>local-maven-repo</id>
+        	<url>file:///${project.basedir}/lib</url>
+    	</repository>
+		<repository>
 			<id>maven</id>
-			<url>http://repo1.maven.org/maven2/</url>
+			<url>https://repo1.maven.org/maven2/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -194,6 +198,11 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+  			<groupId>javax.annotation</groupId>
+  			<artifactId>javax.annotation-api</artifactId>
+  			<version>1.3.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -481,8 +490,6 @@
 			<groupId>jave</groupId>
 			<artifactId>jave</artifactId>
 			<version>1.0.2</version>
-			<systemPath>${basedir}/lib/jave-1.0.2.jar</systemPath>
-			<scope>system</scope>
 		</dependency>
 		<!-- Remove comments in case you want to build fat jar -->
 		<!-- 
