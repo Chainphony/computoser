@@ -314,7 +314,7 @@ public class Generator {
         options.addOption("measures", true, "Number of measures in the piece");
         options.addOption("scale", true, "The musical scale, one of: " + Arrays.toString(Scale.values()));
         options.addOption("tempo", true, "The tempo, one of: " + Arrays.toString(Tempo.values()));
-        options.addOption("seed", true, "Seed for the random number generators");
+        options.addOption("seed", true, "256 bit integer seed for the random number generators");
         
         CommandLineParser parser = new DefaultParser();
         CommandLine cl = null;
