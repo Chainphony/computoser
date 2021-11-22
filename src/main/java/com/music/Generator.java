@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.Long;
 import java.lang.reflect.Field;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -327,7 +328,7 @@ public class Generator {
         }
 
         if (cl.hasOption("seed")) {
-            RandomFactory.setSeed(Long.parseLong(cl.getOptionValue("seed")));
+            RandomFactory.setSeed(new BigInteger(cl.getOptionValue("seed")));
         }
         
         String output = cl.getOptionValue("out");

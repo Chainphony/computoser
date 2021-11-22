@@ -6,3 +6,4 @@
 .project
 config/production.properties
 .m2/
+out/*
