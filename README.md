@@ -24,5 +24,16 @@ docker run --rm -it computoser:latest bash
 mvn compile exec:java -Dexec.mainClass="com.music.Generator" -Dexec.args="-measures 20 -out ./out -scale MAJOR -tempo VERY_FAST"
 ```
 
+## Development Docker Build
+Run the `start_dev_docker.sh` script. It will start a Docker container with all dependencies downloaded.
+Once in the container, exeute `./compile.sh` to compile.
+```
+cd computoser
+./start_dev_docker.sh
+
+# inside the container
+./compile.sh
+```
+
 ## Reference
 The paper describing the algorithm in details is available <a href="https://www.academia.edu/9696759/Computoser_-_rule-based_probability-driven_algorithmic_music_composition">here</a> and <a href="http://arxiv.org/abs/1412.3079">here</a>

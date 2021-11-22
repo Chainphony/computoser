@@ -5,3 +5,4 @@
 .hgignore
 .project
 config/production.properties
+.m2/
