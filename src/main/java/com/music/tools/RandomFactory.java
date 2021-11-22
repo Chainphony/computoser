@@ -42,8 +42,9 @@ public class RandomFactory {
                 BigInteger shifted = seed.get().shiftRight(currentShift);
                 if (currentShift == 256) {
                     currentShift = 0;
+                } else {
+                    currentShift += 64;
                 }
-                currentShift += 64;
                 // Rely on String.hashCode() being stable and not changing between
                 // invocations for the same class.
                 return new Random(c.getName().hashCode() + shifted.longValue());
