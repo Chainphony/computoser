@@ -21,7 +21,7 @@ docker build -t computoser:latest .
 
 # create a container and run inside
 docker run --rm -it computoser:latest bash
-mvn compile exec:java -Dexec.mainClass="com.music.Generator" -Dexec.args="-measures 20 -out ./out -scale MAJOR -tempo VERY_FAST"
+mvn compile exec:java -Dmaven.repo.local=${PWD}/.m2 -Dexec.mainClass="com.music.Generator" -Dexec.args="-measures 20 -out ./out -scale MAJOR -tempo VERY_FAST"
 ```
 
 ## Development Docker Build
