@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y maven 
+RUN apt-get update && apt-get install -y maven timidity
 
 WORKDIR /computoser
 COPY . .
