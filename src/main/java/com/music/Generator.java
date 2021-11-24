@@ -68,8 +68,11 @@ import com.google.common.collect.Maps;
 import com.music.model.ExtendedPhrase;
 import com.music.model.PartType;
 import com.music.model.Scale;
+import com.music.model.prefs.Mood;
 import com.music.model.prefs.Tempo;
+import com.music.model.prefs.Ternary;
 import com.music.model.prefs.UserPreferences;
+import com.music.model.prefs.Variation;
 import com.music.tools.SongChart.GraphicsPanel;
 import com.music.util.MutingPrintStream;
 import com.music.tools.RandomFactory;
@@ -315,6 +318,15 @@ public class Generator {
         options.addOption("scale", true, "The musical scale, one of: " + Arrays.toString(Scale.values()));
         options.addOption("tempo", true, "The tempo, one of: " + Arrays.toString(Tempo.values()));
         options.addOption("seed", true, "256 bit integer seed for the random number generators");
+        options.addOption("classical", "Whether the piece is classical");
+        options.addOption("acompaniment", true, "Acompaniment, one of: " + Arrays.toString(Ternary.values()));
+        options.addOption("drums", true, "Drums, one of: " + Arrays.toString(Ternary.values()));
+        options.addOption("mood", true, "Mood, one of: " + Arrays.toString(Mood.values()));
+        options.addOption("electronic", true, "Electronic, one of: " + Arrays.toString(Ternary.values()));
+        options.addOption("dramatic", true, "Dramatic, one of: " + Arrays.toString(Ternary.values()));
+        options.addOption("simplephrases", true, "Simple phrases, one of: " + Arrays.toString(Ternary.values()));
+        options.addOption("preferdissonance", "Whether to prefer dissonance");
+        options.addOption("variation", true, "Variation, one of: " + Arrays.toString(Variation.values()));
         
         CommandLineParser parser = new DefaultParser();
         CommandLine cl = null;
@@ -355,6 +367,33 @@ public class Generator {
         }
         if (cl.hasOption("tempo")) {
             prefs.setTempo(Tempo.valueOf(cl.getOptionValue("tempo")));
+        }
+        if (cl.hasOption("classical")) {
+            prefs.setClassical(true);
+        }
+        if (cl.hasOption("acompaniment")) {
+            prefs.setAccompaniment(Ternary.valueOf(cl.getOptionValue("acompaniment")));
+        }
+        if (cl.hasOption("drums")) {
+            prefs.setDrums(Ternary.valueOf(cl.getOptionValue("drums")));
+        }
+        if (cl.hasOption("mood")) {
+            prefs.setMood(Mood.valueOf(cl.getOptionValue("mood")));
+        }
+        if (cl.hasOption("electronic")) {
+            prefs.setElectronic(Ternary.valueOf(cl.getOptionValue("electronic")));
+        }
+        if (cl.hasOption("dramatic")) {
+            prefs.setDramatic(Ternary.valueOf(cl.getOptionValue("dramatic")));
+        }
+        if (cl.hasOption("simplephrases")) {
+            prefs.setSimplePhrases(Ternary.valueOf(cl.getOptionValue("simplephrases")));
+        }
+        if (cl.hasOption("preferdissonance")) {
+            prefs.setPreferDissonance(true);
+        }
+        if (cl.hasOption("variation")) {
+            prefs.setVariation(Variation.valueOf(cl.getOptionValue("dramatic")));
         }
         
         System.setOut(new MutingPrintStream(new ByteArrayOutputStream(), System.out));
